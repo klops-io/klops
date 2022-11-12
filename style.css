@@ -1,3 +1,8 @@
+*{
+    font-family: 'Fredoka One', serif;
+    letter-spacing: 0.05em;
+}
+
 .buttons{
     background-color: #c62390;
     display: inline-block;
