@@ -1,0 +1,26 @@
+.buttons{
+    background-color: #c62390;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px grey;
+    color: white;
+    width: 125px;
+}
+
+.buttons:hover {
+    background-color: #98d1e1;
+    color: black;
+}
+
+.buttons:active {
+    background-color: #98d1e1;
+    color: black;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
