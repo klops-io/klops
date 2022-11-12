@@ -1,0 +1,11 @@
+{
+    "name": "klops the octopus",
+    "version": "1.0.0",
+    "description": "carbon analysis of your web searches",
+    "manifest_version": 3,
+    "author": "klop gang",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "klops the octopus"
+    }
+}
