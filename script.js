@@ -1,0 +1,2 @@
+async function fetchData() {}
+fetchData();
