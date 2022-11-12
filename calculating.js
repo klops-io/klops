@@ -8,3 +8,5 @@ const carbonIntensityFactor = {
 const kWhPerByteDataCenter = 0.000000000072;
 const kWhPerByteNetwork = 0.000000000152;
 const kWhPerMinuteDevice = 0.00021;
+
+chrome.runtime()
