@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="./styles/style.css">
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body onload="checkLogin()">
+	<header>
+    </header>
+	<main>
+		<div class = "mainpage">
+			<script type="module">
+				// Import the functions you need from the SDKs you need
+				// TODO: Add SDKs for Firebase products that you want to use
+				// https://firebase.google.com/docs/web/setup#available-libraries
+			  
+				// Your web app's Firebase configuration
+				// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+				var firebaseConfig = {
+				  apiKey: "AIzaSyDJUrj9TfWSyTB2S7qwp52QALGeL8iGTL4",
+				  authDomain: "popcorn-10120.firebaseapp.com",
+				  projectId: "popcorn-10120",
+				  storageBucket: "popcorn-10120.appspot.com",
+				  messagingSenderId: "922740920317",
+				  appId: "1:922740920317:web:a5064cf60c6f9e01e61394",
+				  measurementId: "G-93NPMR16R8"
+				};
+			  
+				// Initialize Firebase
+				firebase.initializeApp(firebaseConfig);
+                const db = getFirestore(app);
+
+                // Get a list of cities from your database
+                async function getCities(db) {
+                const citiesCol = collection(db, 'cities');
+                const citySnapshot = await getDocs(citiesCol);
+                const cityList = citySnapshot.docs.map(doc => doc.data());
+                return cityList;
+                }
+			</script>
+	</main>
+</body>
+</html>
