@@ -43,18 +43,63 @@ const months_data = {
 }
 
 const months2 = {
-    'January': 10001,
-    'Febuary': 2001,
-    'March': 5001,
-    'April': 4001,
-    'May': 15001,
-    'June': 2001,
-    'July': 4001,
-    'August': 30001,
-    'September': 3401,
-    'October': 4001,
-    'November': 8001,
-    'December': 5001
+    'January': 10000,
+    'Febuary': 2000,
+    'March': 5000,
+    'April': 4000,
+    'May': 15000,
+    'June': 2000,
+    'July': 4000,
+    'August': 25000,
+    'September': 3400,
+    'October': 4000,
+    'November': 8000,
+    'December': 5000
+}
+
+const months3 = {
+    'January': 8000,
+    'Febuary': 1500,
+    'March': 4000,
+    'April': 3000,
+    'May': 13000,
+    'June': 1500,
+    'July': 4000,
+    'August': 28000,
+    'September': 3200,
+    'October': 3000,
+    'November': 5000,
+    'December': 6000
+}
+
+const months4 = {
+    'January': 10000,
+    'Febuary': 3000,
+    'March': 5000,
+    'April': 3500,
+    'May': 13500,
+    'June': 1900,
+    'July': 5500,
+    'August': 7000,
+    'September': 3900,
+    'October': 4000,
+    'November': 6000,
+    'December': 12000
+}
+
+const months5 = {
+    'January': 39000,
+    'Febuary': 9000,
+    'March': 8000,
+    'April': 15000,
+    'May': 18500,
+    'June': 9500,
+    'July': 17500,
+    'August': 18000,
+    'September': 6000,
+    'October': 4000,
+    'November': 6500,
+    'December': 19000
 }
 
 const user = document.getElementById('user-graph').getContext('2d');
@@ -125,15 +170,15 @@ const worldChart = new Chart(world, {
         },
         {
             label: 'USA',
-            data: Object.values(months2),
+            data: Object.values(months3),
         },
         {
             label: 'China',
-            data: Object.values(months2),
+            data: Object.values(months4),
         },
         {
             label: 'Other',
-            data: Object.values(months2),
+            data: Object.values(months5),
         }],
     },
     options: {
