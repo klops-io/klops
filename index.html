@@ -29,7 +29,10 @@
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
             import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
             import { getFirestore, getDocs, getDoc, collection, doc } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
+            import { getAuth, signInWithPopup, GoogleAuthProvider, deleteUser, onAuthStateChanged } from "firebase/auth";
 
+            const provider = new GoogleAuthProvider();
+            provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
             // TODO: Add SDKs for Firebase products that you want to use
             // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -46,20 +49,15 @@
             };
 
             // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(app);
-            const db = getFirestore(app);
+            firebase.initializeApp(firebaseConfig);
+            const auth = getAuth();
 
-            const docRef = doc(db, "cities", "SF");
-            const docSnap = await getDoc(docRef);
+            const db = firebase.firestore();
+            var curRef = db.collection("Users");
+	        var monthUsages =[];
 
-            if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
-            } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-            }
         </script>
+        <script type = "module" src="auth.js"></script>
     </div>
     <div class="container mt-3" style="width: 450px;">
         <button class = "buttons" id = "start">START</button>
