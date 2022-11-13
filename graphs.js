@@ -16,7 +16,7 @@ const r={0:0,1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,A:10,B:11,C:12,D:13,E:14,F:15,a
 
 // end of the library
 
-const regions = ['European Union', 'France', 'United States', 'China', 'Other'];
+const regions = ['EU', 'France', 'USA', 'China', 'Other'];
 const months = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const data = {
@@ -116,7 +116,7 @@ const worldChart = new Chart(world, {
     data: {
         labels: months,
         datasets: [{
-            label: 'European Union',
+            label: 'EU',
             data: Object.values(months_data),
         }, 
         {
@@ -124,7 +124,7 @@ const worldChart = new Chart(world, {
             data: Object.values(months2),
         },
         {
-            label: 'United States',
+            label: 'USA',
             data: Object.values(months2),
         },
         {

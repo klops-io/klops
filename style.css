@@ -18,6 +18,8 @@
     box-shadow: 0 9px grey;
     color: white;
     width: 125px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .buttons:hover {
