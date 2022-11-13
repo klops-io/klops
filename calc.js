@@ -11,20 +11,42 @@ const kWhPerByteDataCenter = 0.000000000072;
 const kWhPerByteNetwork = 0.000000000152;
 const kWhPerMinuteDevice = 0.00021;
 
+const defaultLocation = 'Other';
+let userLocation = defaultLocation;
+
 let duration = 0;
 let total = 0;
 
-const kWhDataCenterTotal = total * kWhPerByteDataCenter;
-const GESDataCenterTotal = kWhDataCenterTotal * defaultCarbonIntensityFactorIngCO2PerKWh;
+// const kWhDataCenterTotal = total * kWhPerByteDataCenter;
+// const GESDataCenterTotal = kWhDataCenterTotal * defaultCarbonIntensityFactorIngCO2PerKWh;
 
-const kWhNetworkTotal = total * kWhPerByteNetwork;
-const GESNetworkTotal = kWhNetworkTotal * defaultCarbonIntensityFactorIngCO2PerKWh;
+// const kWhNetworkTotal = total * kWhPerByteNetwork;
+// const GESNetworkTotal = kWhNetworkTotal * defaultCarbonIntensityFactorIngCO2PerKWh;
 
-const kWhDeviceTotal = duration * kWhPerMinuteDevice;
-const GESDeviceTotal = kWhDeviceTotal * carbonIntensityFactorIngCO2PerKWh[location];
+// const kWhDeviceTotal = duration * kWhPerMinuteDevice;
+// const GESDeviceTotal = kWhDeviceTotal * carbonIntensityFactorIngCO2PerKWh[location];
 
-const kWhTotal = Math.round(1000 * (kWhDataCenterTotal + kWhNetworkTotal + kWhDeviceTotal)) / 1000;
-const gCO2Total = Math.round(GESDataCenterTotal + GESNetworkTotal + GESDeviceTotal);
+// const kWhTotal = Math.round(1000 * (kWhDataCenterTotal + kWhNetworkTotal + kWhDeviceTotal)) / 1000;
+// const gCO2Total = Math.round(GESDataCenterTotal + GESNetworkTotal + GESDeviceTotal);
+
+calculateCarbonFootprint = () =>{
+    let duration = localStorage.getItem('duration');
+    duration = null === duration ? 0 : duration;
+
+    const kWhDataCenterTotal = duration * kWhPerByteDataCenter;
+    const GESDataCenterTotal = kWhDataCenterTotal * defaultCarbonIntensityFactorIngCO2PerKWh;
+
+    const kWhNetworkTotal = duration * kWhPerByteNetwork;
+    const GESNetworkTotal = kWhNetworkTotal * defaultCarbonIntensityFactorIngCO2PerKWh;
+
+    const kWhDeviceTotal = duration * kWhPerMinuteDevice;
+    const GESDeviceTotal = kWhDeviceTotal * carbonIntensityFactorIngCO2PerKWh[userLocation];
+
+    const kWhTotal = Math.round(1000 * (kWhDataCenterTotal + kWhNetworkTotal + kWhDeviceTotal)) / 1000;
+    const gCO2Total = Math.round(GESDataCenterTotal + GESNetworkTotal + GESDeviceTotal);
+
+    document.getElementById('duration').textContent = duration.toString();
+}
 
 toMegaByte = (value) => (Math.round(value/1024/1024));
 
@@ -32,12 +54,97 @@ const start_button = document.querySelector('#start');
 const stop_button = document.querySelector('#stop');
 const calc = document.createTextNode("Calculating...");
 const node = document.getElementById("current");
+let dur = document.createTextNode(localStorage.getItem('duration'));
 node.style.fontSize = "24px";
+let started = 0;
+
+let loc = "Other";
+
+// const start_button = document.querySelector('#start');
+// const stop_button = document.querySelector('#stop');
+const eu = document.querySelector('#eu');
+const fr = document.querySelector('#fr');
+const us = document.querySelector('#us');
+const china = document.querySelector('#china');
+const other = document.querySelector('#other');
+
+const euButton = () => {
+    eu.disabled = true;
+    fr.disabled = false;
+    us.disabled = false;
+    china.disabled = false;
+    other.disabled = false;
+    loc = "EU";
+    console.log(loc);
+};
+
+const frButton = () => {
+    eu.disabled = false;
+    fr.disabled = true;
+    us.disabled = false;
+    china.disabled = false;
+    other.disabled = false;
+    loc = "France";
+    console.log(loc);
+};
+
+const usButton = () => {
+    eu.disabled = false;
+    fr.disabled = false;
+    us.disabled = true;
+    china.disabled = false;
+    other.disabled = false;
+    loc = "USA";
+    console.log(loc);
+};
+
+const chinaButton = () => {
+    eu.disabled = false;
+    fr.disabled = false;
+    us.disabled = false;
+    china.disabled = true;
+    other.disabled = false;
+    loc = "China";
+    console.log(loc);
+};
+
+const otherButton = () => {
+    eu.disabled = false;
+    fr.disabled = false;
+    us.disabled = false;
+    china.disabled = false;
+    other.disabled = true;
+    loc = "Other";
+    console.log(loc);
+};
+eu.addEventListener('click', euButton);
+fr.addEventListener('click', frButton);
+us.addEventListener('click', usButton);
+china.addEventListener('click', chinaButton);
+other.addEventListener('click', otherButton);
+
+
+init = () => {
+    const selectedRegion = localStorage.getItem('selectedRegion');
+  
+    if (null !== selectedRegion) {
+      userLocation = loc;
+      selectRegion.value = loc;
+    }
+  
+    if (null === localStorage.getItem('analysisStarted')) {
+      return;
+    }
+}
+  
 
 starts = () => {
     chrome.runtime.sendMessage({ action: 'start' });
     start_button.disabled = true;
     stop_button.disabled = false;
+    if (started != 0){
+        node.removeChild(dur);
+    }
     node.appendChild(calc);
     localStorage.setItem('analysisStarted', '1');
 }
@@ -47,10 +154,16 @@ stops = () => {
     start_button.disabled = false;
     stop_button.disabled = true;
     node.removeChild(calc);
+    dur = document.createTextNode(localStorage.getItem('duration'));
+    node.appendChild(dur);
+    started = 1;
     localStorage.removeItem('analysisStarted');
+    calculateCarbonFootprint();
 }
 
 stop_button.disabled = true;
 
 start_button.addEventListener('click', starts);
 stop_button.addEventListener('click', stops);
+
+init();

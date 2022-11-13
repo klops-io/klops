@@ -4,8 +4,14 @@
     "description": "carbon analysis of your web searches",
     "manifest_version": 3,
     "author": "klop gang",
-    "action":{
+    "browser_action": {
+        "browser_style": true,
         "default_popup": "index.html",
-        "default_title": "klops the octopus"
-    }
+        "default_title": "Klops the Octopus"
+      },
+    "permissions": [
+        "storage",
+        "webRequest",
+        "<all_urls>"
+    ]
 }
