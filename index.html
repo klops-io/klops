@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Covid-19 Stats- UK</title>
+    <title>Klops</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -14,10 +14,11 @@
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 </head>
 
 <body>
-    <img id="image" src="images/KLOPS.svg" />
+    <img id="image" src="images/happyklops.svg" />
     <!--replace with klops image-->
     <div class="container mt-3" style="width: 450px;">
         <h2 class="text-center">KLOPS THE OCTOPUS</h2>
@@ -62,6 +63,33 @@
             }
         </script>
     </div>
+    <div class="container mt-3" style="width: 450px;">
+        <button class = "buttons" id = "start">START</button>
+        <button class = "buttons" id = "stop">STOP</button>
+        <script src="button.js"></script>
+        <br>
+        <br>
+    </div>
+    <div id = "current">
+    </div>
+    <div id = "past" class="container mt-3" style="width: 450px;">
+        <h4>Your historic carbon footprint from Google searches</h4>
+        <br>
+        <canvas id="user-graph" width="500" height="300"></canvas>
+    </div>
+    <div id = "region" class="container mt-3" style="width: 450px;">
+        <br>
+        <h4>Your historic carbon footprint from Google searches compared to people in your region</h4>
+        <br>
+        <canvas id="region-graph" width="500" height="300"></canvas>
+    </div>
+    <div id = "world" class="container mt-3" style="width: 450px;">
+        <br>
+        <h4>Carbon footprint in the world scale</h4>
+        <br>
+        <canvas id="world-graph" width="500" height="300"></canvas>
+    </div>
+    <script src="graphs.js"></script>
 </body>
 
 </html>
