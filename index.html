@@ -10,6 +10,8 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
     <script src="jquery.js"></script>
     <script src="script.js"></script>
+
+    <!--- <meta http-equiv="Content-Security-Policy" content="script-src https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js 'sha256-xzi4zkCjuC8lZcD2UmnqDG0vurmq12W/XKM5Vd0+MlQ='" />-->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -18,10 +20,19 @@
 </head>
 
 <body>
-    <img id="image" src="images/happyklops.svg" />
+    <img id="image" src="images/klopsupset.svg" />
     <!--replace with klops image-->
-    <div class="container mt-3" style="width: 450px;">
+    <div class="container mt-3" id="first" style="width: 450px;">
         <h2 class="text-center">KLOPS THE OCTOPUS</h2>
+        <h4>Choose your region</h4>
+        <div class="dropdown">
+            <button class="buttons" id="eu">EU</button>
+            <button class="buttons" id="fr">France</button>
+            <button class="buttons" id="us">USA</button>
+            <button class="buttons" id="china">China</button>
+            <button class="buttons" id="other">Other</button>
+        </div>
+        <br>
         <h4>Start measuring your carbon footprint</h4>
 
         <script type = "module">
@@ -62,32 +73,33 @@
         </script>
     </div>
     <div class="container mt-3" style="width: 450px;">
-        <button class = "buttons" id = "start">START</button>
-        <button class = "buttons" id = "stop">STOP</button>
-        <script src="button.js"></script>
+        <button class="buttons" id="start">START</button>
+        <button class="buttons" id="stop">STOP</button>
         <br>
         <br>
+        <h4 id="duration">0</h4>
     </div>
-    <div id = "current">
+    <div id="current">
     </div>
-    <div id = "past" class="container mt-3" style="width: 450px;">
+    <div id="past" class="container mt-3" style="width: 450px;">
         <h4>Your historic carbon footprint from Google searches</h4>
         <br>
         <canvas id="user-graph" width="500" height="300"></canvas>
     </div>
-    <div id = "region" class="container mt-3" style="width: 450px;">
+    <div id="region" class="container mt-3" style="width: 450px;">
         <br>
         <h4>Your historic carbon footprint from Google searches compared to people in your region</h4>
         <br>
         <canvas id="region-graph" width="500" height="300"></canvas>
     </div>
-    <div id = "world" class="container mt-3" style="width: 450px;">
+    <div id="world" class="container mt-3" style="width: 450px;">
         <br>
         <h4>Carbon footprint in the world scale</h4>
         <br>
         <canvas id="world-graph" width="500" height="300"></canvas>
     </div>
     <script src="graphs.js"></script>
+    <script src="calc.js"></script>
 </body>
 
 </html>
