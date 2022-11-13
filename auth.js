@@ -49,45 +49,46 @@ signInWithPopup(auth, provider)
             .set(new User(email_in, currentUsage = 0, usageAllTime = 0, usageToday = 0)).then((docRef) => {
                 window.location.href = '../index.html';
             });
-            
-function signIn(){
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // ...
 
-      const db = firebase.firestore();
+        function signIn() {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    const credential = GoogleAuthProvider.credentialFromResult(result);
+                    const token = credential.accessToken;
+                    // The signed-in user info.
+                    const user = result.user;
+                    // ...
 
-      db.collection("usageData").doc(user)
-          .withConverter(userConverter)
-          .set(new User(email_in, currentUsage = 0, usageAllTime = 0, usageToday = 0)).then((docRef) => {
-              window.location.href = '../index.html';
-          });
+                    const db = firebase.firestore();
 
-      }).catch((error) => {
-          // Handle Errors here.
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // The email of the user's account used.
-          const email = error.customData.email;
-          // The AuthCredential type that was used.
-          const credential = GoogleAuthProvider.credentialFromError(error);
-          // ...
-      });
+                    db.collection("usageData").doc(user)
+                        .withConverter(userConverter)
+                        .set(new User(email_in, currentUsage = 0, usageAllTime = 0, usageToday = 0)).then((docRef) => {
+                            window.location.href = '../index.html';
+                        });
 
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
-            const uid = user.uid;
-            // ...
-        } else {
-            // User is signed out
-            // ...
+                }).catch((error) => {
+                    // Handle Errors here.
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // The email of the user's account used.
+                    const email = error.customData.email;
+                    // The AuthCredential type that was used.
+                    const credential = GoogleAuthProvider.credentialFromError(error);
+                    // ...
+                });
+
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // User is signed in, see docs for a list of available properties
+                    // https://firebase.google.com/docs/reference/js/firebase.User
+                    const uid = user.uid;
+                    // ...
+                } else {
+                    // User is signed out
+                    // ...
+                }
+            });
         }
-    });
-    }
+    })
