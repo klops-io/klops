@@ -32,6 +32,14 @@
     transform: translateY(4px);
   }
 
+.buttons:disabled{
+    opacity: 50%;
+    background-color: #98d1e1;
+    color: black;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
 #image{
     position:absolute;
     }
