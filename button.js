@@ -11,15 +11,21 @@ const kWhPerMinuteDevice = 0.00021;
 
 const start_button = document.querySelector('#start');
 const stop_button = document.querySelector('#stop');
+const calc = document.createTextNode("Calculating...");
+
+const node = document.getElementById("current");
+node.style.fontSize = "24px";
 
 const startButton = () => {
     start_button.disabled = true;
     stop_button.disabled = false;
+    node.appendChild(calc);
 };
 
 const stopButton = () => {
     start_button.disabled = false;
     stop_button.disabled = true;
+    node.removeChild(calc);
 };
 
 stop_button.disabled = true;
