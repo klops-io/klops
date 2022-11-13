@@ -22,18 +22,6 @@ let userLocation = defaultLocation;
 let duration = 0;
 let total = 0;
 
-// const kWhDataCenterTotal = total * kWhPerByteDataCenter;
-// const GESDataCenterTotal = kWhDataCenterTotal * defaultCarbonIntensityFactorIngCO2PerKWh;
-
-// const kWhNetworkTotal = total * kWhPerByteNetwork;
-// const GESNetworkTotal = kWhNetworkTotal * defaultCarbonIntensityFactorIngCO2PerKWh;
-
-// const kWhDeviceTotal = duration * kWhPerMinuteDevice;
-// const GESDeviceTotal = kWhDeviceTotal * carbonIntensityFactorIngCO2PerKWh[location];
-
-// const kWhTotal = Math.round(1000 * (kWhDataCenterTotal + kWhNetworkTotal + kWhDeviceTotal)) / 1000;
-// const gCO2Total = Math.round(GESDataCenterTotal + GESNetworkTotal + GESDeviceTotal);
-
 calculateCarbonFootprint = () =>{
     let duration = localStorage.getItem('duration');
     duration = null === duration ? 0 : duration;
@@ -65,8 +53,6 @@ let started = 0;
 
 let loc = "Other";
 
-// const start_button = document.querySelector('#start');
-// const stop_button = document.querySelector('#stop');
 const eu = document.querySelector('#eu');
 const fr = document.querySelector('#fr');
 const us = document.querySelector('#us');
@@ -79,8 +65,10 @@ const euButton = () => {
     us.disabled = false;
     china.disabled = false;
     other.disabled = false;
-    loc = "EU";
-    console.log(loc);
+    selectedRegion = "EU";
+    localStorage.setItem('selectedRegion', selectedRegion);
+    userLocation = selectedRegion;
+    calculateCarbonFootprint();
 };
 
 const frButton = () => {
@@ -89,8 +77,10 @@ const frButton = () => {
     us.disabled = false;
     china.disabled = false;
     other.disabled = false;
-    loc = "France";
-    console.log(loc);
+    selectedRegion = "France";
+    localStorage.setItem('selectedRegion', selectedRegion);
+    userLocation = selectedRegion;
+    calculateCarbonFootprint();
 };
 
 const usButton = () => {
@@ -99,8 +89,10 @@ const usButton = () => {
     us.disabled = true;
     china.disabled = false;
     other.disabled = false;
-    loc = "USA";
-    console.log(loc);
+    selectedRegion = "USA";
+    localStorage.setItem('selectedRegion', selectedRegion);
+    userLocation = selectedRegion;
+    calculateCarbonFootprint();
 };
 
 const chinaButton = () => {
@@ -109,8 +101,10 @@ const chinaButton = () => {
     us.disabled = false;
     china.disabled = true;
     other.disabled = false;
-    loc = "China";
-    console.log(loc);
+    selectedRegion = "China";
+    localStorage.setItem('selectedRegion', selectedRegion);
+    userLocation = selectedRegion;
+    calculateCarbonFootprint();
 };
 
 const otherButton = () => {
@@ -119,8 +113,10 @@ const otherButton = () => {
     us.disabled = false;
     china.disabled = false;
     other.disabled = true;
-    loc = "Other";
-    console.log(loc);
+    selectedRegion = "Other";
+    localStorage.setItem('selectedRegion', selectedRegion);
+    userLocation = selectedRegion;
+    calculateCarbonFootprint();
 };
 eu.addEventListener('click', euButton);
 fr.addEventListener('click', frButton);
@@ -136,6 +132,8 @@ init = () => {
       userLocation = loc;
       selectedRegion.value = loc;
     }
+
+    calculateCarbonFootprint();
   
     if (null === localStorage.getItem('analysisStarted')) {
       return;
