@@ -2,13 +2,14 @@
     "name": "klops the octopus",
     "version": "1.0.0",
     "description": "carbon analysis of your web searches",
-    "manifest_version": 3,
+    "manifest_version": 2,
     "author": "klop gang",
     "browser_action": {
         "browser_style": true,
         "default_popup": "index.html",
         "default_title": "Klops the Octopus"
     },
+    "content_security_policy": "default-src 'self'  https://www.gstatic.com https://cdnjs.cloudflare.com; object-src 'self' ; Style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net ;font-src https://fonts.googleapis.com https://fonts.gstatic.com",
     "permissions": [
         "storage",
         "webRequest",

@@ -129,7 +129,7 @@ init = () => {
   
     if (null !== selectedRegion) {
       userLocation = loc;
-      selectRegion.value = loc;
+      selectedRegion.value = loc;
     }
   
     if (null === localStorage.getItem('analysisStarted')) {
