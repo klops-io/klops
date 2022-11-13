@@ -37,6 +37,80 @@
 
         <script type="module" src="anything.js"></script>
         <script type="module" src="auth.js"></script>
+        <script type = "module" src = "auth.js">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
+            import { getFirestore, getDocs, getDoc, collection, doc } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
+            import { getAuth, signInWithPopup, GoogleAuthProvider, deleteUser, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
+
+            const provider = new GoogleAuthProvider();
+            provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyDJUrj9TfWSyTB2S7qwp52QALGeL8iGTL4",
+                authDomain: "klops-45d5f.firebaseapp.com",
+                projectId: "klops-45d5f",
+                storageBucket: "klops-45d5f.appspot.com",
+                messagingSenderId: "385204185900",
+                appId: "1:385204185900:web:bf37afb6bfbffb6cbf5a89",
+                measurementId: "G-TKKY1FTL49"
+            };
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            //const auth = getAuth();
+            signin();
+
+            const db = firebase.firestore();
+            var curRef = db.collection("userUsageData");
+	        var userMonthUsages =[];
+            var regionRef = db.collection("regionUsageData");
+	        var regionMonthUsages =[];
+
+            curRef.get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log(doc);
+                    // doc.data() is never undefined for query doc snapshots
+                        userMonthUsages.push(doc.data().janUsage);
+                        userMonthUsages.push(doc.data().febUsage);
+                        userMonthUsages.push(doc.data().marUsage);
+                        userMonthUsages.push(doc.data().aprUsage);
+                        userMonthUsages.push(doc.data().mayUsage);
+                        userMonthUsages.push(doc.data().junUsage);
+                        userMonthUsages.push(doc.data().julUsage);
+                        userMonthUsages.push(doc.data().augUsage);
+                        userMonthUsages.push(doc.data().sepUsage);
+                        userMonthUsages.push(doc.data().octUsage);
+                        userMonthUsages.push(doc.data().decUsage);
+                        userMonthUsages.push(doc.data().decUsage); })
+                });
+
+                regionRef.get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    // doc.data() is never undefined for query doc snapshots
+                        regionMonthUsages.push(doc.data().janUsage);
+                        regionMonthUsages.push(doc.data().febUsage);
+                        regionMonthUsages.push(doc.data().marUsage);
+                        regionMonthUsages.push(doc.data().aprUsage);
+                        regionMonthUsages.push(doc.data().mayUsage);
+                        regionMonthUsages.push(doc.data().junUsage);
+                        regionMonthUsages.push(doc.data().julUsage);
+                        regionMonthUsages.push(doc.data().augUsage);
+                        regionMonthUsages.push(doc.data().sepUsage);
+                        regionMonthUsages.push(doc.data().octUsage);
+                        regionMonthUsages.push(doc.data().decUsage);
+                        regionMonthUsages.push(doc.data().decUsage);
+                        });
+                });
+
+
+        </script>
+        <!--<script type = "module" src="auth.js"></script>-->
     </div>
     <div class="container mt-3">
         <button class="buttons" id="start">START</button>
