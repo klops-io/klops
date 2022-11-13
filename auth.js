@@ -1,22 +1,3 @@
-import { initializeApp } from 'firebase/app';
-
-// TODO: Replace the following with your app's Firebase project configuration
-const firebaseConfig = {
-  //...
-};
-
-const app = initializeApp(firebaseConfig);
-
-import { getAuth, signInWithPopup, GoogleAuthProvider, deleteUser } from "firebase/auth";
-
-const provider = new GoogleAuthProvider();
-provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-
-const auth = getAuth();
-const user = NULL;
-
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
@@ -35,7 +16,7 @@ signInWithPopup(auth, provider)
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     // The signed-in user info.
-    user = result.user;
+    const user = result.user;
     // ...
 
     const db = firebase.firestore();
