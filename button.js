@@ -11,5 +11,7 @@ const stopButton = () => {
     stop_button.disabled = true;
 };
 
+stop_button.disabled = true;
+
 start_button.addEventListener('click', startButton);
 stop_button.addEventListener('click', stopButton)
