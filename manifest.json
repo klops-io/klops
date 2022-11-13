@@ -8,7 +8,7 @@
         "browser_style": true,
         "default_popup": "index.html",
         "default_title": "Klops the Octopus"
-      },
+    },
     "permissions": [
         "storage",
         "webRequest",
